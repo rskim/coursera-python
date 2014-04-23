@@ -2,8 +2,15 @@ from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
 
-milliseconds = seconds = minutes = attempts = wins = 0
+milliseconds = attempts = wins = 0
 running = "No"
+
+def format(milliseconds):
+    seconds = milliseconds / 10
+    tenths = milliseconds % 10
+    minutes = seconds / 60
+    seconds %= 60
+    return str(minutes) + ":" + str(seconds).rjust(2, '0') + "." + str(tenths)
 
 class GameScreen(BoxLayout):
     def click(self, *args):
@@ -25,31 +32,16 @@ class GameScreen(BoxLayout):
     def tick(self, *args):
         timer_kv = self.ids['timer_kv']
         global milliseconds
-        global seconds
-        global minutes
-        if milliseconds < 9:
-            milliseconds += 1
-        else:
-            seconds +=1
-            milliseconds = 0
-        if seconds == 60:
-            minutes += 1
-            seconds = 0
-        if len(str(seconds)) == 1:
-            secondsf = "0" + str(seconds)
-        else:
-            secondsf = seconds
-        timer_kv.text = (str(minutes) + ":" + str(secondsf) + "." + str(milliseconds))
+        milliseconds += 1
+        timer_kv.text = format(milliseconds)
 
     def reset(self, *args):
         timer_kv = self.ids['timer_kv']
         score_kv = self.ids['score_kv']
         global milliseconds
-        global seconds
-        global minutes
         global attempts
         global wins
-        milliseconds = seconds = minutes = attempts = wins = 0
+        milliseconds = attempts = wins = 0
         score_kv.text = "0/0"
         timer_kv.text = "0:00.0"
 
