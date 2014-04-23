@@ -11,6 +11,7 @@
 
     FloatLayout:
         Scatter:
+            pos: [0, 55]
             Button:
                 background_down: 'skull.png'
                 background_normal: 'skull.png'
@@ -18,9 +19,20 @@
                 font_size: 150
                 color: [1, 0, 0, 1]
                 text: "Start"
-                size_hint_x: None
                 width: 450
                 height: 450
                 on_press: root.click()
                 size_hint_x: None
                 size_hint_y: None
+
+    Button:
+        background_down: 'button.png'
+        background_normal: 'button.png'
+        id: reset_kv
+        font_size: 55
+        text: "Reset"
+        size_hint_y: None
+        width: 450
+        height: 55
+        on_press: root.reset()
+
