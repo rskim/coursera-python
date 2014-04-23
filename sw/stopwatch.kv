@@ -1,0 +1,26 @@
+
+<GameScreen>:
+    orientation: 'vertical'
+    Label:
+        id: score_kv
+        text: "0/0"
+        font_size: 55
+        size_hint_y: None
+        color: [1, 0, 0, 1]
+
+
+    FloatLayout:
+        Scatter:
+            Button:
+                background_down: 'skull.png'
+                background_normal: 'skull.png'
+                id: timer_kv
+                font_size: 150
+                color: [1, 0, 0, 1]
+                text: "Start"
+                size_hint_x: None
+                width: 450
+                height: 450
+                on_press: root.click()
+                size_hint_x: None
+                size_hint_y: None
